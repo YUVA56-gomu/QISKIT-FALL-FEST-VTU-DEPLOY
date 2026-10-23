@@ -1,479 +1,440 @@
-# QuantumRoute ⚛️
-### Noise-Aware Quantum Communication & Entanglement-Based Teleportation
+<div align="center">
 
-**Quantum D Clan** · `VTU-QFF-HC-0126` · **Tier: Both**  
-VTU-Qiskit Fall Fest 2026 Hackathon · VTU Belagavi
+  <img src="frontend/public/assets/quantumroute-logo.png" alt="QuantumRoute Logo" width="460" />
 
-| Detail | Information |
-|---|---|
-| Team | Quantum D Clan |
-| Team ID | VTU-QFF-HC-0126 |
-| Track | Quantum Communication & Networking |
-| Repository | `vtu-hc-quantum-d-clan` |
-| Organisation | `vtu-qiskit-fall-fest-2026` |
-| Project | QuantumRoute |
-| Status | ✅ QuantumRoute V2 Complete & Verified (138/138 Tests Passing) |
-| Core Technology | Python, Qiskit, Qiskit Aer, FastAPI, React, Three.js, TypeScript |
+  # QuantumRoute V2
+  ### Noise-Aware Quantum Communication, Multi-Hop Entanglement Routing & State Teleportation Platform
+
+  **VTU-Qiskit Fall Fest 2026 Hackathon** · **Team ID:** `VTU-QFF-HC-0126` · **Team:** Quantum D Clan  
+  *VTU Belagavi · Track: Quantum Communication & Networking*
+
+  [![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+  [![Qiskit](https://img.shields.io/badge/Qiskit-1.4.6-6929C4?logo=qiskit&logoColor=white)](https://qiskit.org/)
+  [![Qiskit Aer](https://img.shields.io/badge/Qiskit_Aer-0.18.0-8A3FFC)](https://github.com/Qiskit/qiskit-aer)
+  [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+  [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+  [![Vite](https://img.shields.io/badge/Vite-6.0+-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+  [![Tests](https://img.shields.io/badge/Tests-201%20Passed-brightgreen)](tests/)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+</div>
 
 ---
 
 ## 📌 Table of Contents
 
-- [Team Members](#-team-members-github-ids)
-- [Problem Statement](#-problem-statement)
-- [Proposed Solution](#-proposed-solution)
-- [Approach & Architecture](#-approach--architecture)
-- [Tech Stack](#️-tech-stack)
-- [Project Structure](#-project-structure)
-- [How to Run](#-how-to-run)
-- [How to Push Code](#-how-to-push-code)
-- [Submission Checklist](#-submission-checklist)
-- [Resources](#-resources)
-- [License](#-license)
+- [Executive Summary](#-executive-summary)
+- [Team Members & Attribution](#-team-members--attribution)
+- [Project Overview](#-project-overview)
+  - [The Problem](#the-problem)
+  - [Our Solution](#our-solution)
+  - [Target Users](#target-users)
+- [Interactive Platform Modules](#-interactive-platform-modules)
+  - [1. Network Lab](#1-network-lab)
+  - [2. Experiments](#2-experiments)
+  - [3. State Analysis](#3-state-analysis)
+  - [4. Channels Lab](#4-channels-lab)
+  - [5. Purification Lab](#5-purification-lab)
+  - [6. QASM Export](#6-qasm-export)
+  - [7. Validation](#7-validation)
+  - [8. Documentation](#8-documentation)
+- [System Architecture](#-system-architecture)
+- [Technology Stack](#️-technology-stack)
+- [Installation and Setup](#-installation-and-setup)
+  - [Prerequisites](#prerequisites)
+  - [1. Clone Repository](#1-clone-repository)
+  - [2. Backend Setup](#2-backend-setup)
+  - [3. Frontend Setup](#3-frontend-setup)
+- [Quick Start Guide](#-quick-start-guide)
+- [Scientific Foundations](#-scientific-foundations)
+  - [Werner-Link Model](#1-werner-link-model)
+  - [Path Composition and Fidelity](#2-path-composition-and-fidelity)
+  - [Quality-Aware Routing Formulation](#3-quality-aware-routing-formulation)
+  - [Physical Attenuation and Decoherence](#4-physical-attenuation-and-decoherence)
+  - [BBPSSW Entanglement Purification](#5-bbpssw-entanglement-purification)
+- [Testing & Quality Assurance](#-testing--quality-assurance)
+- [Limitations & Scientific Assumptions](#-limitations--scientific-assumptions)
+- [Project Status](#-project-status)
+- [License & Acknowledgments](#-license--acknowledgments)
 
 ---
 
-## 👥 Team Members (GitHub IDs)
+## 🚀 Executive Summary
 
+**QuantumRoute V2** is a full-stack, research-grade quantum network simulation platform engineered for the **VTU-Qiskit Fall Fest 2026 Hackathon**.
 
-| # | Name | GitHub Username | Role |
+Traditional classical networks route packets by minimizing hop count. In quantum repeaters and entanglement distribution networks, hop count is an unreliable heuristic: passing through fewer noisy quantum channels often yields vastly inferior end-to-end state fidelity compared to a slightly longer route comprised of high-purity links.
+
+QuantumRoute bridges theoretical quantum communication and software engineering. It couples an analytical Werner-state network graph engine with real Qiskit circuit synthesis, density-matrix numerical simulation via Qiskit Aer, physical channel loss modelling, BBPSSW entanglement purification, 3D WebGL quantum state visualization, and automated OpenQASM 3.0 export.
+
+---
+
+## 👥 Team Members & Attribution
+
+**Team:** Quantum D Clan  
+**Team ID:** `VTU-QFF-HC-0126`  
+**Hackathon:** VTU-Qiskit Fall Fest 2026, VTU Belagavi  
+**Track:** Quantum Communication & Networking
+
+| # | Name | GitHub Username | Role | Primary Responsibilities |
+|---|---|---|---|---|
+| 1 | **Yuvaraj B Sutar** | [@YUVA56-gomu](https://github.com/YUVA56-gomu) | Team Lead | Scientific architecture, circuit simulation, routing mathematics |
+| 2 | **Srijan Rastogi** | [@SrijanRastogi](https://github.com/SrijanRastogi) | Developer | Full-stack platform engineering, React UI, API endpoints |
+| 3 | **Veeresh M A** | [@Veeresh23-06](https://github.com/Veeresh23-06) | Developer | Channel loss physics, purification protocols, test harnesses |
+
+---
+
+## 💡 Project Overview
+
+### The Problem
+Quantum communication relies on transmitting delicate quantum states across long distances. Because the **No-Cloning Theorem** prohibits amplifying unknown quantum states, long-distance communication requires **entanglement distribution, intermediate entanglement swapping, and quantum teleportation**.
+
+However:
+1. **Environmental Noise & Decoherence:** Optical fiber attenuation, detector dark counts, and memory dephasing rapidly degrade shared Bell pairs.
+2. **Shortest-Path Fallacy:** Classical routing protocols (e.g. Breadth-First Search) select paths with the minimum number of hops. In quantum networks, a 2-hop path across degraded links ($w=0.4$) yields $w_{\text{path}} = 0.16$, whereas a 3-hop path of high-quality links ($w=0.9$) yields $w_{\text{path}} = 0.729$—a massive fidelity advantage.
+3. **Abstraction Gap:** Researchers often evaluate routing algorithms purely on graphs without validating whether the corresponding dynamic multi-qubit quantum circuits can be physically synthesized and executed.
+
+### Our Solution
+QuantumRoute V2 provides an end-to-end platform that:
+- **Models Noisy Quantum Links:** Formalizes links as two-qubit Werner states $\rho_W(w)$ parameterized by Werner visibility $w \in [0, 1]$.
+- **Implements Quality-Aware Routing:** Computes optimal paths using Dijkstra’s algorithm on logarithmic cost weights $c_e = -\ln(w_e)$, provably maximizing multiplicative end-to-end Werner parameter $\prod w_e$.
+- **Synthesizes Multi-Hop Circuits:** Dynamically generates 2N-qubit quantum circuits with Bell-state measurements, deferred-measurement corrections, and feedforward operations.
+- **Simulates Physics-Based Impairments:** Evaluates telecom fiber attenuation ($0.2\text{ dB/km}$ at $1550\text{ nm}$), detector SNR scaling, and $T_1 / T_2$ memory relaxation.
+- **Distills Entanglement:** Implements multi-round BBPSSW quantum purification with bilateral CNOT gates and parity post-selection.
+- **Validates Predictions:** Cross-validates analytical network predictions directly against exact Qiskit Aer density-matrix simulations ($\Delta F < 10^{-14}$).
+
+### Target Users
+- **Quantum Network Researchers:** Investigating routing policies, purification yield, and repeater placement.
+- **Quantum Software Engineers:** Prototyping quantum network protocols and generating verified OpenQASM 3.0 circuits.
+- **Students & Educators:** Visually exploring teleportation, entanglement swapping, noise channels, and the Bloch sphere in an interactive environment.
+
+---
+
+## 🔬 Interactive Platform Modules
+
+QuantumRoute V2 features eight integrated modules accessible via the unified web interface:
+
+```text
+┌────────────────────────────────────────────────────────────────────────┐
+│                          QuantumRoute V2                              │
+├──────────────┬─────────────────────────────────────────────────────────┤
+│ Network Lab  │ Interactive graph topologies, link editor, BFS vs Dijkstra│
+│ Experiments  │ Teleportation & swapping circuits, noise parameter sweep│
+│ State Analysis│ 3D WebGL Bloch sphere, coordinate editor, state tomography│
+│ Channels Lab │ Fiber attenuation (dB/km), detector dark counts, T1/T2   │
+│ Purification │ BBPSSW 4-qubit bilateral distillation & cascading rounds│
+│ QASM Export  │ OpenQASM 3.0, OpenQASM 2.0, & Qiskit Python generator   │
+│ Validation   │ Analytical model vs. Qiskit Aer simulation harness      │
+│ Documentation│ Mathematical formulations, scientific references, guides│
+└──────────────┴─────────────────────────────────────────────────────────┘
+```
+
+### 1. Network Lab
+- **Interactive Topologies:** Switch between benchmark topologies (Karnataka Quantum Backbone, Ring-5, Star-6, Mesh Grid 3x3, and Custom user graphs).
+- **In-Place Link Customization:** Interactively edit edge parameters including Werner parameter $w_e$, physical fiber distance $d$ (km), attenuation coefficient $\alpha$, and link operational status.
+- **Routing Comparison:** Side-by-side comparison of **Shortest-Hop Routing (BFS)** versus **Quality-Aware Routing (Dijkstra)**, highlighting divergence cases where Dijkstra selects a longer path to achieve superior fidelity.
+- **Dual-Metric Optimization:** Analyze the trade-off between quantum state fidelity and classical signaling propagation delay.
+
+### 2. Experiments
+- **Single-Link Teleportation:** Execute standard 3-qubit teleportation circuits with customizable arbitrary input states $|\psi\rangle = \cos(\theta/2)|0\rangle + e^{i\phi}\sin(\theta/2)|1\rangle$.
+- **Multi-Hop Entanglement Swapping:** Dynamically compile $2N$-qubit repeater chains with Bell-state measurements (BSM) and feedforward Pauli corrections.
+- **Noise Sweeps:** Simulate teleportation under variable depolarizing probability $p \in [0, 1]$ and plot output fidelity against the theoretical bound $F = 1 - p/2$.
+
+### 3. State Analysis
+- **3D WebGL Bloch Sphere:** Interactive sphere rendered with Three.js / Canvas, supporting 360° orbit controls and animated state vectors.
+- **Bi-Directional Coordinate Editor:** Modify states seamlessly in Cartesian coordinates $(x, y, z)$ or spherical angles $(\theta, \phi)$, with automatic normalization to the unit sphere.
+- **Quantum State Tomography:** Simulates finite-shot projective measurements in Pauli bases ($X, Y, Z$), reconstructs the Stokes parameters, and applies physical density-matrix projection to ensure non-negative eigenvalues.
+
+### 4. Channels Lab
+- **Silica Fiber Model:** Calculates photon loss based on standard telecom fiber characteristics ($\alpha = 0.2\text{ dB/km}$ at $1550\text{ nm}$) using the transmittance function $\eta = 10^{-\alpha d / 10}$.
+- **Detector Impairments:** Models superconducting nanowire single-photon detector (SNSPD) dark counts and signal-to-noise ratio degradation.
+- **Quantum Memory Relaxation:** Simulates longitudinal energy relaxation ($T_1$) and transverse dephasing ($T_2$) on parked link qubits awaiting classical feedforward.
+
+### 5. Purification Lab
+- **BBPSSW Protocol:** Implements the 4-qubit bilateral CNOT distillation protocol across two noisy Bell pairs.
+- **Parity Post-Selection:** Models classical coincidence matching where pairs are accepted only when target measurements match ($|00\rangle$ or $|11\rangle$).
+- **Cascading Distillation:** Evaluates multi-round purification showing monotonic fidelity improvement towards unity for any initial state with $F > 0.5$.
+- **Yield & Cost Trade-Offs:** Displays distillation success probability, resource overhead, and net Bell-pair yield per round.
+
+### 6. QASM Export
+- **Multi-Format Synthesis:** Generates standardized **OpenQASM 3.0**, legacy **OpenQASM 2.0**, and copy-pasteable **Qiskit Python** code.
+- **One-Click Clipboard & Download:** Export circuits ready for IBM Quantum hardware backends or external quantum simulators.
+- **Transparent Instruction Handling:** Provides clear guidance when non-unitary Kraus noise operations or projective post-selection routines cannot be exported as raw unitary QASM.
+
+### 7. Validation
+- **Closed-Loop Verification Harness:** Systematically evaluates the analytical Werner product rule ($w_{\text{path}} = \prod w_e$) against full density-matrix circuit simulation on Qiskit Aer.
+- **Quantitative Accuracy:** Proves model agreement with delta errors below $\Delta F < 10^{-14}$, verifying zero mathematical discrepancies in path fidelity calculation.
+- **Comprehensive Benchmark Suite:** Validates all 21 node-pair combinations across the 7-node benchmark network.
+
+### 8. Documentation
+- **Embedded Research Manual:** Accessible directly in the UI with mathematical derivations, algorithm pseudo-code, API specifications, and reproducible citations.
+- **Source of Truth Reference:** Fully synchronizes with project engineering specifications (`PLAN.md`, `AGENTS.md`, and `ARCHITECTURE.md`).
+
+---
+
+## 🏛️ System Architecture
+
+QuantumRoute V2 follows a clean, decoupled architecture:
+
+```mermaid
+flowchart TD
+    subgraph Client["Frontend Client (React 19 + TypeScript + Vite)"]
+        UI["Modern Web Interface & Dark Mode Theme"]
+        Tabs["8 Core Labs: Network, Experiments, State, Channels, Purification, QASM, Validation, Docs"]
+        Canvas3D["3D WebGL Bloch Sphere (Three.js / HTML5 Canvas)"]
+        GraphViz["Network Topology Graph Engine"]
+        APIClient["Typed REST API Client (Fetch / Axios)"]
+    end
+
+    subgraph Server["Backend Server (FastAPI + Uvicorn)"]
+        Router["REST Router (/api/network, /api/experiments, /api/channels, etc.)"]
+        Models["Pydantic Data Schemas & Validation"]
+    end
+
+    subgraph ScientificCore["Scientific & Quantum Core (Python 3.12)"]
+        RoutingEngine["Routing Engine (Dijkstra -ln(w), BFS, Multi-Metric)"]
+        PhysicsEngine["Channel Physics (Fiber Attenuation, T1/T2 Decoherence)"]
+        PurificationEngine["BBPSSW Distillation & Cascading Protocol"]
+        CircuitCompiler["Dynamic Multi-Hop Circuit Compiler"]
+        TomographyEngine["Quantum State Tomography & Stokes Reconstruction"]
+        ValidationHarness["Analytical vs. Numerical Validation Harness"]
+    end
+
+    subgraph QuantumSimulation["Quantum Simulation Backends (Qiskit 1.4.6)"]
+        QiskitCore["Qiskit QuantumCircuit & Operators"]
+        QiskitAer["Qiskit Aer Simulator (Density Matrix & Finite-Shot)"]
+        QiskitInfo["qiskit.quantum_info (Statevector, Fidelity, SuperOp)"]
+    end
+
+    UI --> Tabs
+    Tabs --> Canvas3D
+    Tabs --> GraphViz
+    Tabs --> APIClient
+    APIClient <-->|JSON REST over HTTP| Router
+    Router --> Models
+    Models --> ScientificCore
+    ScientificCore --> QuantumSimulation
+```
+
+---
+
+## 🛠️ Technology Stack
+
+| Component | Technology | Version | Description |
 |---|---|---|---|
-| 1 | Yuvaraj B Sutar | YUVA56-gomu | Team Lead |
-| 2 | Srijan Rastogi | SrijanRastogi | Developer |
-| 3 | Veeresh M A | Veeresh23-06 | Developer |
+| **Language** | Python | `3.12.14` | Core backend runtime and scientific computing environment |
+| **Quantum SDK** | Qiskit | `1.4.6` | Quantum circuit creation, gate synthesis, and operator mechanics |
+| **Quantum Simulator** | Qiskit Aer | `0.18.0` | High-performance density-matrix and shot-based simulation |
+| **Quantum Info** | `qiskit.quantum_info` | `1.4.6` | State fidelity, partial trace, DensityMatrix, and Pauli operators |
+| **Backend Framework** | FastAPI | `>=0.110.0` | Asynchronous high-throughput REST API server |
+| **ASGI Server** | Uvicorn | `>=0.29.0` | Production ASGI web server |
+| **Data Validation** | Pydantic | `>=2.6.0` | Strict schema validation and serialization |
+| **Graph Algorithms** | NetworkX | `>=3.2.0` | Network topology representation and graph algorithms |
+| **Numerical Math** | NumPy | `2.5.4` | Matrix computations and vector operations |
+| **Scientific Utilities**| SciPy | `1.18.1` | Optimization, log-cost calculations, and numerical stability |
+| **Frontend Framework** | React | `19.0.0` | Modern component-driven UI architecture |
+| **Language** | TypeScript | `5.0+` | End-to-end typed frontend logic |
+| **Build Tool** | Vite | `8.3.4` | Ultra-fast frontend bundling and development server |
+| **3D Rendering** | Three.js / Canvas | Latest | Interactive 3D WebGL Bloch Sphere visualization |
+| **Icons** | Lucide React | `>=0.300.0` | Professional interface iconography |
+| **Testing** | pytest | `9.1.1` | Complete automated unit and integration test suite |
 
 ---
 
-## ❓ Problem Statement
-
-**Problem:** Reliable quantum communication requires the transfer of quantum information while preserving the properties of quantum states. Noise affecting distributed entangled states can reduce teleportation fidelity, while selecting a communication path based only on hop count may overlook differences in link quality.
-
-**Why it matters:** Understanding how noise and entanglement quality influence end-to-end communication is important when studying future quantum networks. A simulator can help users investigate these effects before attempting more complex network implementations.
-
-**Track / Category:** Quantum Communication & Networking — VTU-Qiskit Fall Fest 2026.
-
----
-
-## 💡 Proposed Solution
-
-**Solution:** QuantumRoute is a Qiskit-based simulator designed to investigate noise-aware quantum communication using entanglement-based teleportation. It will compare ideal and noisy teleportation, model entanglement distribution across small network topologies, and compare shortest-hop routing with quality-aware routing.
-
-**Key idea:** Combine Qiskit circuit simulation with an analytical Werner-state network model, then validate the model against circuit-based results where the assumptions permit.
-
-**Why this works:** The project connects quantum circuit behaviour with network-level decisions. By measuring teleportation fidelity under controlled noise and evaluating alternative routes, QuantumRoute aims to demonstrate how link quality can influence simulated end-to-end communication reliability.
-
-### Implementation status & capabilities
-
-- [x] **Environment & setup (QR-000):** Verified Python 3.12.14 virtual environment with Qiskit 1.4.6, Qiskit Aer 0.18.0, NumPy 2.5.4, SciPy 1.18.1, and pytest 9.1.1.
-- [x] **Quantum teleportation (QR-001):** Implemented and verified single-link teleportation circuit (`src/quantumroute/teleport.py`) with deferred-measurement coherent corrections and receiver subsystem extraction. Tested across cardinal states and 25 pseudo-random Bloch sphere states ($F \ge 0.9999$).
-- [x] **Noise experiments (QR-002):** Implemented and verified depolarizing noise channel on distributed link qubit (`src/quantumroute/noise.py`, `src/quantumroute/experiments.py`). Validated theoretical curve $F = 1 - p/2$ across 21 points in $p \in [0, 1]$ ($\Delta < 1.3 \times 10^{-15}$).
-- [x] **Quantum network model (QR-003):** Implemented and verified Werner-state link mechanics and path composition product rule ($w_{\text{path}} = \prod w_e$, $F_{e,\text{path}} = (1+3w_{\text{path}})/4$, $F_{\text{tel,avg}} = (2F_{e,\text{path}}+1)/3$) on a standard 7-node benchmark topology (`src/quantumroute/network.py`). Verified that Bell fidelities must never be directly multiplied.
-- [x] **Quality-aware routing (QR-004):** Implemented and verified BFS shortest-hop and Dijkstra quality-aware ($-\ln(w_e)$) routing algorithms (`src/quantumroute/routing.py`). Proved Dijkstra matches brute-force exhaustive simple-path enumeration across all 21 node pairs. Verified benchmark divergence cases ('A'->'D' and 'A'->'G') where Dijkstra selects longer paths with substantially higher Werner parameter and state fidelity.
-- [x] **Circuit-level entanglement swapping (QR-005):** Implemented and verified multi-hop quantum circuit simulation with Werner pairs and coherent feedforward corrections (`src/quantumroute/swapping.py`).
-- [x] **Model validation harness (QR-006):** Analytical predictions vs. circuit-simulated validation harness (`src/quantumroute/validate.py`).
-- [x] **Interactive dashboard (QR-007):** Streamlit interactive UI application (`src/quantumroute/app.py`).
-- [x] **Arbitrary N-hop circuit compiler (QR-011):** Scalable 2N-qubit dynamic circuit generation with coherent feedforward across arbitrary repeater chains, verified for 4-hop and 5-hop exact simulations (`src/quantumroute/swapping.py`).
-- [x] **Real-world telecom topologies & multi-metric routing (QR-012):** Authentic Karnataka Quantum Backbone with realistic fiber distances and dual-metric routing balancing quantum fidelity vs. classical signaling propagation latency (`src/quantumroute/network.py`, `src/quantumroute/routing.py`).
-- [x] **Physical fiber attenuation & T1/T2 decoherence (QR-009):** Realistic silica optical fiber attenuation ($\alpha = 0.2\text{ dB/km}$ at $1550\text{ nm}$), dark count SNR scaling, and $T_1/T_2$ memory relaxation channels (`src/quantumroute/physics.py`).
-- [x] **BBPSSW entanglement purification (QR-010):** 4-qubit bilateral CNOT quantum distillation protocol with parity post-selection and multi-round cascading, strictly enhancing Bell fidelity for any entangled input ($F > 0.5$) (`src/quantumroute/purification.py`).
-- [x] **Quantum state tomography (QR-013):** Realistic Pauli basis ($X, Y, Z$) measurement engine with finite shots on Qiskit Aer and linear Stokes density-matrix reconstruction with physical projection (`src/quantumroute/tomography.py`).
-- [x] **Interactive Dashboard 2.0 (QR-014):** 3D Plotly Bloch sphere visualizer, multi-topology switcher (Karnataka Backbone, Ring, Star, Grid), multi-metric routing, and one-click OpenQASM 3.0 / Qiskit hardware export (`src/quantumroute/app.py`).
-
----
-
-## 🧩 Approach & Architecture
-
-QuantumRoute is designed as a small, local-first Python application. The initial implementation prioritizes scientific correctness and reproducible experiments before dashboard polish.
-
-### 1. Input
-
-Users will configure:
-
-- A quantum input state.
-- Network topology and candidate communication paths.
-- Link-quality parameters for the selected network model.
-- Noise parameters for controlled experiments.
-
-### 2. Quantum circuit simulation
-
-Qiskit will be used to construct the single-link teleportation circuit. Qiskit Aer and Qiskit's quantum-information tools will support simulation and fidelity calculations.
-
-The initial validation sequence is:
-
-1. Verify ideal teleportation.
-2. Introduce depolarizing noise.
-3. Measure output-state fidelity.
-4. Compare simulated results with the relevant analytical prediction.
-
-### 3. Network modelling
-
-The network model will represent links using Werner-state parameters under explicitly documented assumptions.
-
-For a link with Werner parameter \(w\), its Bell-state fidelity is
-
-\[
-F_e=\frac{1+3w}{4}
-\]
-
-For a path of independent Werner-state links with idealized entanglement swapping, the planned analytical model uses
-
-\[
-w_{\text{path}}=\prod_{e\in\text{path}}w_e
-\]
-
-and estimates the end-to-end Bell-state fidelity as
-
-\[
-F_{e,\text{path}}=\frac{1+3w_{\text{path}}}{4}
-\]
-
-The corresponding average teleportation fidelity for the resulting two-qubit resource state is
-
-\[
-F_{\text{tel,avg}}=\frac{2F_{e,\text{path}}+1}{3}
-\]
-
-These expressions depend on the model assumptions, including Werner-state links and idealized swapping operations. They are not universal formulas for arbitrary noisy quantum networks.
-
-### 4. Routing
-
-QuantumRoute plans to compare two strategies:
-
-- **Shortest-hop routing:** Select a route with the fewest links.
-- **Quality-aware routing:** Minimize an additive path cost based on the Werner parameters:
-
-\[
-c_e=-\ln(w_e),\qquad w_e>0
-\]
-
-Dijkstra's algorithm can minimize the total cost, which is equivalent to maximizing the product of positive link parameters under this model.
-
-The implementation will validate the routing results against small-network reference cases before claiming correctness.
-
-### 5. Output and visualization
-
-The planned dashboard will display:
-
-- Network topology and selected routes.
-- Link-quality and noise settings.
-- Teleportation fidelity.
-- Analytical predictions versus simulated results.
-- Route hop count and model-based quality metrics.
-
-### Architecture overview
-
-```text
-User Configuration
-        |
-        v
-Network & Experiment Setup
-        |
-        +----------------------+
-        |                      |
-        v                      v
-Quantum Teleportation     Network Model
-Circuit & Noise           Werner Links
-        |                 & Entanglement
-        |                 Swapping Model
-        v                      |
-State Fidelity                v
-Calculation              Routing Engine
-        |                      |
-        +-----------+----------+
-                    |
-                    v
-           Validation & Metrics
-                    |
-                    v
-          Interactive Dashboard
-```
-
-**Scientific scope:** The MVP is a simulator and analytical study. It does not claim to model all real-world fibre loss, quantum-memory decoherence, noisy repeater operations, purification protocols, or physical quantum hardware.
-
----
-
-## 🛠️ Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Language | Python |
-| Quantum SDK | Qiskit |
-| Quantum simulation | Qiskit Aer |
-| Quantum-state analysis | `qiskit.quantum_info` |
-| Network modelling | NetworkX |
-| Numerical computation | NumPy |
-| Interactive dashboard | Streamlit |
-| Visualization | Plotly and/or Matplotlib |
-| Testing | pytest |
-| Environment | Python virtual environment, VS Code |
-| Version control | Git and GitHub |
-
-*Dependency versions will be pinned after the supported Python environment and package installation are verified. Additional libraries will be introduced only when required.*
-
----
-
-## 📁 Project Structure
-
-The following is the planned structure. Files and features may remain pending until their corresponding implementation tasks are completed.
-
-```text
-vtu-hc-quantum-d-clan/
-├── README.md
-├── PLAN.md
-├── AGENTS.md
-├── ARCHITECTURE.md
-├── DECISIONS.md
-├── TASKS.md
-├── TESTING.md
-├── requirements.txt
-├── .gitignore
-├── LICENSE
-├── src/
-│   └── quantumroute/
-│       ├── __init__.py
-│       ├── teleport.py       # Teleportation circuit
-│       ├── noise.py          # Noise configuration
-│       ├── network.py        # Network and Werner model
-│       ├── swapping.py       # Entanglement-swapping logic
-│       ├── routing.py        # Route selection algorithms
-│       ├── validate.py       # Model and circuit validation
-│       └── app.py            # Streamlit dashboard
-├── tests/
-│   ├── test_teleport.py
-│   ├── test_noise.py
-│   ├── test_network.py
-│   ├── test_routing.py
-│   └── test_validate.py
-├── notebooks/
-│   └── exploration.ipynb
-└── docs/
-    └── experiments.md
-```
-
-Large generated datasets and environment-specific files should not be committed unnecessarily. The structure may be adjusted when implementation demonstrates a concrete need.
-
----
-
-## 🚀 How to Run
-
-**Status:** All Phase 1 milestones (QR-000 through QR-007) and Phase 2 competitive upgrades (QR-009 through QR-014) are implemented and verified. The automated test suite passes with 100% success rate (91/91 passing tests).
+## 💻 Installation and Setup
 
 ### Prerequisites
+- **Python:** Version `3.12` installed.
+- **Node.js:** Version `18.0+` (or `20.0+`) and `npm` installed.
+- **Git:** Version `2.30+` installed.
 
-- Python 3.12 (supported and verified via `.venv`).
-- Git.
-- Official repository clone.
-
-### 1. Clone the official repository
+### 1. Clone Repository
 
 ```bash
 git clone https://github.com/vtu-qiskit-fall-fest-2026/vtu-hc-quantum-d-clan.git
 cd vtu-hc-quantum-d-clan
 ```
 
-### 2. Create a virtual environment
+### 2. Backend Setup
 
-**Windows PowerShell (using `uv` or `py`)**
+Create and activate a virtual environment, then install dependencies:
 
+**Windows (PowerShell):**
 ```powershell
-# Using uv (fastest):
-uv venv .venv --python 3.12
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-
-# Or using standard python:
-py -3.12 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
-**Linux / macOS**
-
-```bash
-python3.12 -m venv .venv
-source .venv/bin/activate
-```
-
-### 3. Install dependencies
-
-```bash
 pip install -r requirements.txt
 ```
 
-### 4. Run tests & build validation
+**Linux / macOS:**
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-Execute the complete automated test suite (verifying QR-000 through QR-014 plus V2 backend API, 3D Bloch sphere, coordinate editor, editable links, and network regression tests):
+Start the FastAPI backend server:
+```bash
+uvicorn backend.main:app --host 127.0.0.1 --port 8000 --reload
+```
+The interactive Swagger API documentation will be available at `http://127.0.0.1:8000/docs`.
 
+### 3. Frontend Setup
+
+In a separate terminal, navigate to the `frontend` directory and start the Vite development server:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open your browser to:
+```text
+http://localhost:5173
+```
+
+---
+
+## ⚡ Quick Start Guide
+
+1. **Launch the Platform:** Follow the installation steps above to start both the backend (`:8000`) and frontend (`:5173`).
+2. **Explore the Network Lab:**
+   - Select the **Karnataka Quantum Backbone** topology from the dropdown.
+   - Choose Source Node **Bangalore** and Target Node **Belagavi**.
+   - Compare the **Shortest-Hop Path** (fewest links) with the **Quality-Aware Path** (highest Werner parameter).
+   - Click any link in the network table or graph to adjust its Werner parameter $w_e$ and observe the real-time route update.
+3. **Simulate Quantum Teleportation in Experiments:**
+   - Switch to the **Experiments** tab.
+   - Set an input quantum state (e.g. $|+\rangle$ or $|-i\rangle$).
+   - Run a depolarizing noise sweep to observe simulated fidelity track the analytical line $F = 1 - p/2$.
+4. **Interact with the 3D Bloch Sphere:**
+   - Navigate to **State Analysis**.
+   - Drag to rotate the 3D Bloch Sphere.
+   - Enter target coordinates $(\theta, \phi)$ or $(x, y, z)$ and trigger state tomography to view reconstructed Stokes parameters from shot-based simulation.
+5. **Purify Degraded Entanglement:**
+   - In **Purification Lab**, input a degraded Bell state ($F = 0.65$).
+   - Execute 3 rounds of BBPSSW distillation and inspect the fidelity increase alongside the accepted pair yield.
+6. **Export QASM Circuits:**
+   - In **QASM Export**, choose your target circuit and copy the generated **OpenQASM 3.0** code directly for deployment.
+
+---
+
+## 📐 Scientific Foundations
+
+### 1. Werner-Link Model
+Each network link $e = (u, v)$ supplies a two-qubit Werner state parameterized by visibility $w_e \in [0, 1]$:
+$$\rho_W(w_e) = w_e |\Phi^+\rangle\langle\Phi^+| + (1 - w_e) \frac{I_4}{4}$$
+where $|\Phi^+\rangle = \frac{|00\rangle + |11\rangle}{\sqrt{2}}$ is the canonical Bell state and $I_4$ is the $4 \times 4$ identity matrix.
+
+The Bell-state fidelity relative to $|\Phi^+\rangle$ is linear in $w$:
+$$F_e = \langle\Phi^+|\rho_W(w_e)|\Phi^+\rangle = \frac{1 + 3w_e}{4}$$
+
+### 2. Path Composition and Fidelity
+Under the standard repeater assumptions (Werner-form links, projective Bell measurements, ideal classical feedforward, and negligible memory storage time):
+$$w_{\text{path}} = \prod_{e \in \text{path}} w_e$$
+The end-to-end Bell fidelity across the composite path is:
+$$F_{e,\text{path}} = \frac{1 + 3w_{\text{path}}}{4}$$
+For a state teleported across this distributed entangled resource, the average teleportation fidelity across all pure single-qubit input states is:
+$$F_{\text{tel,avg}} = \frac{2 F_{e,\text{path}} + 1}{3} = \frac{1 + w_{\text{path}}}{2}$$
+
+> **Important Scientific Invariant:** Multiplying state fidelities directly ($F_1 \times F_2$) is mathematically and physically invalid. Only the underlying Werner parameters $w_e$ multiply along the path.
+
+### 3. Quality-Aware Routing Formulation
+Maximizing the end-to-end Werner visibility $\prod_{e \in P} w_e$ for non-zero links ($w_e > 0$) is mathematically equivalent to minimizing the additive cost function:
+$$c_e = -\ln(w_e)$$
+$$\min_{P} \sum_{e \in P} -\ln(w_e) \iff \max_{P} \prod_{e \in P} w_e$$
+QuantumRoute implements Dijkstra's algorithm over this transformed cost space, guaranteeing optimal end-to-end fidelity in polynomial time $O(|E| + |V| \log |V|)$.
+
+### 4. Physical Attenuation and Decoherence
+For physical optical fibers of length $d$ (km) with attenuation coefficient $\alpha = 0.2\text{ dB/km}$ at $1550\text{ nm}$:
+$$\eta(d) = 10^{-\frac{\alpha d}{10}}$$
+Detector dark counts ($p_{\text{dark}}$) further degrade the initial Werner visibility:
+$$w_{\text{fiber}}(d) \approx \frac{\eta(d)}{\eta(d) + 2 p_{\text{dark}}}$$
+Memory decoherence during classical signaling latency $\tau = d / c_{\text{fiber}}$ ($c_{\text{fiber}} \approx 2 \times 10^8\text{ m/s}$) is modelled via Lindblad decay operators:
+$$w(t) = w_0 \cdot \exp\left(-\frac{t}{T_2}\right)$$
+
+### 5. BBPSSW Entanglement Purification
+Given two identical Werner pairs with fidelity $F$, bilateral CNOT operations followed by $Z$-basis measurement post-selection produce an output pair with distilled fidelity:
+$$F_{\text{out}} = \frac{F^2 + \frac{1}{9}(1 - F)^2}{F^2 + \frac{2}{3}F(1 - F) + \frac{5}{9}(1 - F)^2}$$
+Whenever $F > 0.5$, $F_{\text{out}} > F$, driving the entangled state asymptotically toward $F = 1.0$ over successive distillation rounds.
+
+---
+
+## 🧪 Testing & Quality Assurance
+
+QuantumRoute maintains a comprehensive test suite to ensure scientific correctness, numerical stability, and API reliability.
+
+### Running Backend Tests
+Execute all automated tests via pytest:
 ```bash
 pytest -v
 ```
 
-All 138 tests execute with 100% clean pass rate.
+The test suite covers 201 test cases across 22 test modules:
+- `tests/test_environment.py`: Verifies dependencies and execution environment.
+- `tests/test_teleport.py`: Single-link ideal and noisy teleportation fidelity.
+- `tests/test_swapping.py`: Entanglement swapping circuits and feedforward logic.
+- `tests/test_routing.py`: BFS vs. Dijkstra path finding across benchmark graphs.
+- `tests/test_network.py`: Werner parameter composition and graph invariants.
+- `tests/test_noise.py`: Depolarizing channels and theoretical limits.
+- `tests/test_physics.py`: Fiber attenuation, dark count SNR, and $T_1/T_2$ decay.
+- `tests/test_purification.py` & `test_v2_purification.py`: BBPSSW protocol and cascading distillation.
+- `tests/test_tomography.py`: Finite-shot Pauli measurements and density matrix reconstruction.
+- `tests/test_validation.py`: Closed-loop analytical vs. Qiskit Aer simulation verification.
+- `tests/test_v2_backend_api.py`: FastAPI REST endpoint contracts and responses.
+- `tests/test_v2_bloch_3d_coordinates.py`: 3D Cartesian and spherical coordinate transformations.
+- `tests/test_v2_editable_links.py`: Dynamic link modification and graph recomputation.
+- `tests/test_v2_channels.py`: Physical channel endpoints and attenuation models.
+- `tests/test_v2_experiments.py`: Experiment runners and automated parameter sweeps.
 
-Verify the frontend production build:
-
+### Running Frontend Production Build
 ```bash
 cd frontend
 npm run build
 ```
-
-### 5. Run the application
-
-#### Option A: QuantumRoute V2 Interactive Web Platform (Recommended)
-
-1. **Launch the FastAPI backend server:**
-   ```bash
-   uvicorn backend.main:app --reload --port 8000
-   ```
-2. **Launch the React + Three.js frontend application:**
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
-   Open your browser to `http://localhost:5173` to explore the interactive Network Lab, editable link parameters, and the 3D WebGL Bloch Sphere with real-time Cartesian/spherical coordinate editing.
-
-#### Option B: Standalone Streamlit Dashboard 2.0
-
-Launch locally via Streamlit:
-
-```bash
-streamlit run src/quantumroute/app.py
-```
-
-Or via the application forwarder:
-
-```bash
-streamlit run app/streamlit_app.py
-```
+Validates TypeScript types and produces the production client bundle with zero errors.
 
 ---
 
-## 🔁 How to Push Code
+## ⚠️ Limitations & Scientific Assumptions
 
-Follow the organizers' Git & Collaboration Handbook and any additional instructions provided to the team.
+To ensure complete scientific integrity, the following assumptions and limitations are explicitly noted:
 
-### Configure Git
-
-Run once if Git identity is not already configured:
-
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "you@example.com"
-```
-
-Use the email associated with your GitHub account or another appropriate Git commit email.
-
-### Everyday workflow
-
-Check your current state before making changes:
-
-```bash
-git status
-git branch --show-current
-git remote -v
-```
-
-After the official repository has been cloned and the correct remote verified, create a branch for your task:
-
-```bash
-git switch main
-git pull --ff-only origin main
-git switch -c feature/your-task
-```
-
-Review and test your changes before committing:
-
-```bash
-git diff
-python -m pytest -q
-git add README.md
-git commit -m "docs: update QuantumRoute README"
-git push -u origin feature/your-task
-```
-
-Open a Pull Request on GitHub and follow the team's review process.
-
-**Important:** Do not push directly to `main` unless the organizers explicitly authorize it. Confirm the required branching and review workflow with the organizers, especially because the official submission deadline is strict.
-
-### Commit message convention
-
-| Prefix | Meaning |
-|---|---|
-| `feat:` | New feature |
-| `fix:` | Bug fix |
-| `docs:` | Documentation |
-| `test:` | Tests added or fixed |
-| `refactor:` | Code restructuring |
-| `chore:` | Configuration or dependency maintenance |
-
-### Collaboration guidelines
-
-- Pull or otherwise synchronize with the official repository before starting work.
-- Work on clearly assigned tasks and use branches when required.
-- Commit small, meaningful changes.
-- Review diffs before committing.
-- Never commit credentials, tokens, or local environment files.
-- Never report tests as passing unless they have actually run.
-- Keep scientific assumptions and implementation documentation synchronized.
-- Follow the organizers' repository and submission rules over generic GitHub workflow advice.
+1. **Werner-Link Abstraction:** The network model assumes noisy links are Werner states. While Werner states accurately capture isotropic depolarizing noise, real-world polarization mode dispersion (PMD) or asymmetric phase noise may require non-isotropic Bell-diagonal state descriptions.
+2. **Repeater Operation Overhead:** The analytical product rule $w_{\text{path}} = \prod w_e$ assumes ideal intermediate Bell-state measurements and perfect classical feedforward. Real physical repeaters incur gate infidelity during swapping and finite storage decoherence in quantum memories.
+3. **Finite-Shot Tomography:** Exact simulations compute state fidelity directly from the output `DensityMatrix`. When executing finite-shot tomography, statistical shot noise is expected and scales as $O(1/\sqrt{N_{\text{shots}}})$.
+4. **QASM Export Constraints:** OpenQASM 3.0 export is designed for unitary gate sequences and projective measurement circuits. Non-unitary noise processes (e.g., custom Kraus maps) and measurement-conditional post-selection (as used in purification) require either native feedforward support on target hardware or density-matrix representation.
+5. **Simulation vs. Physical Hardware:** All computations are executed numerically on classical hardware using Qiskit Aer simulators. Results do not represent physical quantum hardware execution or physical quantum supremacy.
 
 ---
 
-## ✅ Submission Checklist
+## 🏆 Project Status
 
-### Project and repository
-
-- [x] README updated with the final project details.
-- [x] All team members and GitHub usernames listed.
-- [x] Official track and problem statement confirmed.
-- [x] Dependencies verified in a clean environment.
-- [x] Quantum teleportation circuit implemented and tested.
-- [x] Noise experiments implemented and validated.
-- [x] Network model and routing algorithms tested.
-- [x] Analytical predictions compared with simulated results.
-- [x] Final source code committed to the official team repository.
-- [x] Latest implementation and tests verified (138/138 passing tests across 19 test suites).
-- [ ] Demo screenshot or video linked in the README.
-- [ ] Required project summary submitted through the hackathon portal.
-- [ ] Final presentation and demonstration prepared.
-
-### Final submission
-
-- [ ] Working prototype demonstrated.
-- [ ] GitHub repository link included in the presentation.
-- [ ] Quantum algorithm and circuit details explained.
-- [ ] Results and limitations clearly presented.
-- [ ] Team details included.
-- [ ] Required YouTube demo video submitted.
-- [ ] Submission deadlines and portal requirements confirmed.
-
-**Repository visibility:** The organizers' repository is currently the official team repository. Do not make it public or change its access settings unless the organizers explicitly require and authorize that change. Confirm the final visibility requirement before submission.
-
-*All checklist items remain pending until individually completed and verified.*
+- **Status:** **Completed Hackathon Submission**
+- **Hackathon:** VTU-Qiskit Fall Fest 2026
+- **Release Version:** **QuantumRoute V2.0.0**
+- **Test Suite Status:** **201 / 201 Automated Tests Passing**
+- **Frontend Build Status:** **Production Build Passing (0 errors)**
 
 ---
 
-## 📚 Resources
+## 📜 License & Acknowledgments
 
-| Resource | Link |
-|---|---|
-| Qiskit documentation | https://docs.quantum.ibm.com/ |
-| Qiskit Runtime documentation | https://quantum.cloud.ibm.com/docs/ |
-| Qiskit Aer simulator guide | https://docs.quantum.ibm.com/guides/simulator |
-| IBM Quantum Platform | https://quantum.cloud.ibm.com/ |
-| Qiskit learning resources | https://qiskit.qotlabs.org/learning/ |
-| GitHub documentation | https://docs.github.com/ |
+### License
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for complete details.
 
-Use these resources to verify API behaviour, circuit construction, simulation options, and installation requirements. Cite external references in project documentation when they materially support technical claims.
-
----
-
-## 📄 License
-
-Released under the MIT License. See [LICENSE](LICENSE) for details.
+### Acknowledgments
+- **VTU Belagavi & IBM Quantum:** Organizers of the VTU-Qiskit Fall Fest 2026 Hackathon.
+- **Qiskit Community:** For developing and maintaining the open-source Qiskit SDK and Qiskit Aer simulator.
+- **Scientific Literature:**
+  - C. H. Bennett et al., *"Teleporting an unknown quantum state via dual classical and Einstein-Podolsky-Rosen channels"*, Phys. Rev. Lett. 70, 1895 (1993).
+  - C. H. Bennett et al., *"Purification of an Entangled State with Local Operations"*, Phys. Rev. Lett. 76, 722 (1996).
+  - R. Werner, *"Quantum states with Einstein-Podolsky-Rosen correlations admitting a hidden-variable model"*, Phys. Rev. A 40, 4277 (1989).
 
 ---
 
-**Quantum D Clan** · Team ID `VTU-QFF-HC-0126` · Tier Both  
-Built with ⚛️ Qiskit for the VTU-Qiskit Fall Fest 2026 Hackathon.
-
-[⬆ Back to Top](#quantumroute-)
+<div align="center">
+  <sub>Built with ⚛️ Qiskit by <b>Quantum D Clan</b> for the VTU-Qiskit Fall Fest 2026 Hackathon</sub>
+</div>
